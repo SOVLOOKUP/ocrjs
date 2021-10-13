@@ -21,11 +21,20 @@ async function init() {
   return { onnxruntime, photon }
 }
 
+
+export interface ReshapeOption {
+    mean?: number[] 
+    std?: number[]
+    bgr?: boolean
+    normalizeType?: number
+}
+
 interface InferInput {
   base64: string
   modelSession: InferenceSession
   onnxruntime: onnxModuleType
-  photon: photonModuleType
+  photon: photonModuleType,
+  reshapeOpt?: ReshapeOption
 }
 
 export type { onnxModuleType, photonModuleType, InferInput }

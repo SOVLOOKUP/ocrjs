@@ -6,21 +6,19 @@ async function main() {
     const ocr = await new OCR().init()
     
     // text direction
-    const img1 = readImg(`img/cls1.png`)
-    const img2 = readImg(`img/cls2.png`)
-    console.log("text cls1:", await ocr.cls(img1.get_base64()))
-    console.log("text cls2:", await ocr.cls(img2.get_base64()))
+    const img1 = readImg(`img/cls.png`)
+    // console.log("text cls up:", await ocr.cls(img1.get_base64()))
     
     // text det
-    // const boarder = readImg(`img/boarder.png`)
-    // const points = await ocr.det(img.get_base64())
+    const img2 = readImg(`img/boarder.png`)
+    const points = await ocr.det(img1.get_base64())
     // console.log("text det:", points)
 
-    // for (const point of points) {
-    //     watermark(img, boarder, point.x ,point.y)
-    // }
+    for (const point of points) {
+        watermark(img1, img2, point.x ,point.y)
+    }
 
-    // storeImg(img, "out.png")
+    storeImg(img1, "out.png")
     
     // text rec
     // console.log("text rec:", await ocr.rec(imgBase64))
@@ -35,12 +33,12 @@ function readImg(path: string) {
     return base64_to_image(b_data)
 }
 
-// import { watermark, PhotonImage } from '@silvia-odwyer/photon-node'
+import { watermark, PhotonImage } from '@silvia-odwyer/photon-node'
 
-// function storeImg(img:PhotonImage,name:string) {
-//     const output_base64 = img.get_base64()
-//     const output_data = output_base64.replace(/^data:image\/\w+;base64,/, '');
-//     fs.writeFile(name, output_data, {encoding: 'base64'}, ()=>{});
-// }
+function storeImg(img:PhotonImage,name:string) {
+    const output_base64 = img.get_base64()
+    const output_data = output_base64.replace(/^data:image\/\w+;base64,/, '');
+    fs.writeFile(name, output_data, {encoding: 'base64'}, ()=>{});
+}
 
 main()
