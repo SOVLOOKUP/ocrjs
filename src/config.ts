@@ -1,4 +1,4 @@
-export default {
+const models = {
     'cls': {
         'ch_mul_m_cls':
             'https://bj.bcebos.com/v1/ai-studio-online/1fce1485ebe647c89754fd9f2aeee0a8e815de59b1644875af9013f0b93f56cf?responseContentDisposition=attachment%3B%20filename%3Dch_mul_m_cls.onnx',
@@ -48,3 +48,5 @@ export default {
             'https://bj.bcebos.com/v1/ai-studio-online/365e482fd2f94052924bfe4f5d44aac34866850e00f74625a716fb928da32163?responseContentDisposition=attachment%3B%20filename%3Dch_v2_c_rec.onnx',
     }
 }
+
+export { models }

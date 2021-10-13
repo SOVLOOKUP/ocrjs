@@ -15,6 +15,10 @@ export async function infer<T>(opt: InferInput, postInfer: PostInfer<T>, preInfe
         // 索引 +1 不是 4 的倍数 去掉 alpha 通道
         return ((i + 1) % 4 !== 0)
     })
+    img = img.map((v) => {
+        // 归一化
+        return v / 255
+    })
     try {
         const dims = [1, 3, width, height]
         const inputData = Float32Array.from(img)
@@ -27,7 +31,7 @@ export async function infer<T>(opt: InferInput, postInfer: PostInfer<T>, preInfe
         const dataC = results[modelSession.outputNames[0]]
         return await postInfer(dataC)
     } catch (e) {
-        console.error(`failed to inference ONNX model: ${e}.`)
+        throw e
     }
 }
 

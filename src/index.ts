@@ -1,7 +1,7 @@
 import { clsInfer, detInfer, recInfer } from "./infer"
 import init, { onnxModuleType, photonModuleType } from "./init"
 import fetch from "cross-fetch"
-import config from "./config"
+import { models } from "./config"
 import { InferenceSession } from "onnxruntime-common"
 
 export default class OCR {
@@ -32,7 +32,7 @@ export default class OCR {
     return await clsInfer(
       {
         base64,
-        modelSession: await this.getOrDownLoadModel(config.cls.ch_mul_m_cls),
+        modelSession: await this.getOrDownLoadModel(models.cls.ch_mul_m_cls),
         onnxruntime: this.onnxruntime,
         photon: this.photon,
       },
@@ -44,7 +44,7 @@ export default class OCR {
     return await detInfer(
       {
         base64,
-        modelSession: await this.getOrDownLoadModel(config.det.ch_mul_v2_c_det),
+        modelSession: await this.getOrDownLoadModel(models.det.ch_mul_v2_c_det),
         onnxruntime: this.onnxruntime,
         photon: this.photon,
       }, 5
@@ -56,7 +56,7 @@ export default class OCR {
     return await recInfer(
       {
         base64,
-        modelSession: await this.getOrDownLoadModel(config.rec.ch_v2_c_rec),
+        modelSession: await this.getOrDownLoadModel(models.rec.ch_v2_c_rec),
         onnxruntime: this.onnxruntime,
         photon: this.photon,
       }, 5
