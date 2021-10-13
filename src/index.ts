@@ -47,7 +47,7 @@ export default class OCR {
         modelSession: await this.getOrDownLoadModel(models.det.ch_mul_v2_c_det),
         onnxruntime: this.onnxruntime,
         photon: this.photon,
-      }, 5
+      }, 1
     )
   }
 
@@ -59,7 +59,7 @@ export default class OCR {
         modelSession: await this.getOrDownLoadModel(models.rec.ch_v2_c_rec),
         onnxruntime: this.onnxruntime,
         photon: this.photon,
-      }, 5
+      }, 1
     )
   }
 }

@@ -6,17 +6,18 @@ async function main() {
     const ocr = await new OCR().init()
     
     // text direction
-    const img1 = readImg(`img/cls.png`)
-    // console.log("text cls up:", await ocr.cls(img1.get_base64()))
+    const img1 = readImg(`img/a.png`)
+    console.log("text cls up:", await ocr.cls(img1.get_base64()))
     
     // text det
     const img2 = readImg(`img/boarder.png`)
     const points = await ocr.det(img1.get_base64())
     // console.log("text det:", points)
 
-    for (const point of points) {
-        watermark(img1, img2, point.x ,point.y)
-    }
+    watermark(img1, img2, points.leftTop.x ,points.leftTop.y)
+    watermark(img1, img2, points.rightBottom.x ,points.rightBottom.y)
+    watermark(img1, img2, points.leftTop.x ,points.rightBottom.y)
+    watermark(img1, img2, points.rightBottom.x ,points.leftTop.y)
 
     storeImg(img1, "out.png")
     

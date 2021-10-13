@@ -8,11 +8,11 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"cross-fetch": "^3.1.4",
-		"@silvia-odwyer/photon-node": "^0.3.1",
-		"onnxruntime-node": "^1.9.0",
 		"@silvia-odwyer/photon": "^0.3.11",
+		"@silvia-odwyer/photon-node": "^0.3.1",
+		"cross-fetch": "^3.1.4",
 		"onnxruntime-common": "^1.9.0",
+		"onnxruntime-node": "^1.9.0",
 		"onnxruntime-web": "^1.9.0"
 	},
 	"devDependencies": {

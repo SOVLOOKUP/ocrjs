@@ -15,7 +15,6 @@ async function clsInfer(opt: InferInput) {
   return await infer(opt, postInfer);
 }
 
-
 // 文本检测
 async function detInfer(opt: InferInput, resizeMethod: 1 | 2 | 3 | 4 | 5) {
   opt.reshapeOpt = {
@@ -46,18 +45,36 @@ async function detInfer(opt: InferInput, resizeMethod: 1 | 2 | 3 | 4 | 5) {
 
   // [x,1,w,h] 解析结果
   const postInfer = (dataC: Tensor) => {
-    const pointList: Point[] = [];
+    // min
+    let mx: number | null = null;
+    let my: number | null = null;
+    // max
+    let ax = 0;
+    let ay = 0;
     const w = dataC.dims[dataC.dims.length - 2];
     dataC.data.forEach((v, i) => {
-      if (v > 0) {
+      if (v > 0.000001) {
         const point = (i + 1);
         const tmpx = point % w;
         const x = tmpx === 0 ? w : tmpx;
         const y = Math.ceil(point / w);
-        pointList.push({ x: Math.round(x * wb), y: Math.round(y * hb) });
+
+        if (x > ax) ax = x;
+        if (y > ay) ay = y;
+        if (mx === null || x < mx ) mx = x;
+        if (my === null || y < my ) my = y;
       }
     });
-    return pointList;
+    return {
+      leftTop: <Point> {
+        x: Math.round(<number><unknown>mx * wb),
+        y: Math.round(<number><unknown>mx * hb),
+      },
+      rightBottom: <Point> {
+        x: Math.round(ax * wb),
+        y: Math.round(ay * hb),
+      },
+    };
   };
   return await infer(opt, postInfer, preInfer);
 }

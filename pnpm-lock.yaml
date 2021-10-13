@@ -4,6 +4,7 @@ specifiers:
   '@silvia-odwyer/photon': ^0.3.11
   '@silvia-odwyer/photon-node': ^0.3.1
   cross-fetch: ^3.1.4
+  ocrjs: 'link:'
   onnxruntime-common: ^1.9.0
   onnxruntime-node: ^1.9.0
   onnxruntime-web: ^1.9.0
@@ -14,6 +15,7 @@ dependencies:
   '@silvia-odwyer/photon': registry.npmmirror.com/@silvia-odwyer/photon/0.3.11
   '@silvia-odwyer/photon-node': registry.npmmirror.com/@silvia-odwyer/photon-node/0.3.1
   cross-fetch: registry.nlark.com/cross-fetch/3.1.4
+  ocrjs: 'link:'
   onnxruntime-common: registry.npmmirror.com/onnxruntime-common/1.9.0
   onnxruntime-node: registry.npmmirror.com/onnxruntime-node/1.9.0
   onnxruntime-web: registry.npmmirror.com/onnxruntime-web/1.9.0
